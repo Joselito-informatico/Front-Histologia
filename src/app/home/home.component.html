@@ -1,0 +1,28 @@
+<div class="cuerpo">
+  <section class="container">
+    <p class="category">Seleccione una categoría:</p>
+    <div class="list-group">
+      <button role="button" class="list-group-category" (click)="selectCategory('')">Mostrar todos<br></button>
+      <button role="button" class="list-group-category" (click)="selectCategory('pectoral')">Categoria 1<br></button>
+      <button role="button" class="list-group-category" (click)="selectCategory('facial')">Categoria 2<br></button>
+      <a href="#" class="list-group-category" (click)="selectCategory('Categoria 3')">Categoria 3<br></a>
+    </div>
+  </section>
+  
+  <section class="base">
+    <p class="tissue">Sistema nervioso:</p>
+    <div class="tissue-group">
+        <div *ngFor="let tejido of listaTejidos_show; track $index" class="orden">
+            <img (click)="drawPoint($event)" src="{{tejido.imagenUrl}}" alt="{{tejido.alt}}">
+            <a href="/tejido" class="list-group-item" (click)="selectCategory(tejido.nombre)"> {{tejido.nombre}}</a>
+        </div>
+    </div>
+    <p class="tissue">Sistema respiratorio:</p>
+    <div class="tissue-group">
+        <div *ngFor="let tejido of listaTejidos_show; track $index" class="orden">
+            <img (click)="drawPoint($event)" src="{{tejido.imagenUrl}}" alt="{{tejido.alt}}">
+            <a href="/tejido" class="list-group-item" (click)="selectCategory(tejido.nombre)"> {{tejido.nombre}}</a>
+        </div>
+      </div>
+  </section>
+</div>
