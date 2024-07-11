@@ -9,4 +9,5 @@ export const routes: Routes = [
     { path: 'settings', component: SettingsComponent },
     { path: 'notes', component: NotesComponent },
     { path: 'tejido', component: TejidoComponent },
+    { path: 'tejido/:id', component: TejidoComponent },
 ];

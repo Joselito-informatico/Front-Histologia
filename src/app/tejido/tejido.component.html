@@ -1,31 +1,43 @@
 <div class="cuerpo">
-    <section class="container">
-      <p class="category">Seleccione una imagen o video:</p>
-      <div class="list-group">
-        <button role="button" class="list-group-category" (click)="selectCategory('')">Imagen 1<br></button>
-        <button role="button" class="list-group-category" (click)="selectCategory('pectoral')">Imagen 2<br></button>
-        <button role="button" class="list-group-category" (click)="selectCategory('facial')">Video 1<br></button>
-        <a href="#" class="list-group-category" (click)="selectCategory('Categoria 3')">Video 2<br></a>
-      </div>
-      <p class="notes">Notas: </p>
-      <div class="list-group">
-        <a href="#" class="list-group-notes" (click)="selectCategory('Nota 1')">Nota 1<br></a>
-        <a href="#" class="list-group-notes" (click)="selectCategory('Nota 2')">Nota 2<br></a>
-        <a href="#" class="list-group-notes" (click)="selectCategory('Nota 3')">Nota 3<br></a>
-        <a href="#" class="list-group-notes" (click)="selectCategory('Nota 4')">Nota 4<br></a>
-      </div>
-    </section>
-    
-    <section class="base">
-        <img src="https://concepto.de/wp-content/uploads/2019/04/histolog%C3%ADa-tejido-humano-e1554756738822.jpg" alt="Tejido 1">
-        <a href="#" class="list-group-item" (click)="selectCategory('Tejido 1')">Tejido 1</a>
-      <!-- <p class="tissue">Seleccione un tejido:</p>
-      <div class="tissue-group">
-          <div *ngFor="let tejido of listaTejidos_show; track $index" class="orden">
-              <img (click)="drawPoint($event)" src="{{tejido.imagenUrl}}" alt="{{tejido.alt}}">
-              <a href="#" class="list-group-item" (click)="selectCategory(tejido.nombre)"> {{tejido.nombre}}</a>
-          </div>
-      </div> -->
-    </section>
-  </div>
+  <section class="container">
+    <p class="category">Seleccione una imagen:</p>
+    <div class="list-group">
+      <button role="button" class="list-group-category" *ngFor="let captura of tejidosArray[0]?.capturas" (click)="seleccionarImagen(captura)">
+        {{ captura.name }}<br>
+      </button>
+    </div>
+
+    <p class="category">Seleccione una nota:</p>
+    <div class="list-group">
+      <a class="list-group-category" *ngFor="let nota of tejidosArray[0]?.notas" (click)="selectCategory(nota.nota)">
+        {{ nota.nota }}<br>
+      </a>
+    </div>
+
+    <p class="category">Sistemas:</p>
+    <div class="list-group">
+      <button role="button" class="list-group-category" *ngFor="let sistema of tejidosArray[0]?.sistemas" (click)="selectCategory(sistema)">
+        {{ sistema }}<br>
+      </button>
+    </div>
+  </section>
+
+  <section class="base">
+    <img [src]="imagenSeleccionada?.image" alt="Imagen seleccionada" class="full-width-image">
+    <a [href]="imagenSeleccionada?.image" class="list-group-item" (click)="selectCategory('Tejido 1')">Tejido 1</a>
+  </section>
   
+</div>
+
+
+<style>
+  .base {
+    width: 100%; /* Asegura que el contenedor ocupe todo el ancho disponible */
+  }
+  
+  .full-width-image {
+    width: 100%; /* Ajusta la imagen al 100% del ancho del contenedor */
+    height: auto; /* Mantiene la proporción de la imagen */
+    display: block; /* Elimina cualquier espacio blanco debajo de la imagen */
+  }
+</style>

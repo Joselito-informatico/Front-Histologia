@@ -6,6 +6,33 @@ export interface ITejido {
     imagenUrl: string;
     alt: string;
 }
+export interface Categorias{
+    id: number;
+    name: string;
+}
+export interface Muestra {
+    id: number;
+    name: string;
+    capturas: {
+        id: number;
+        name: string;
+        image: string;
+    }[];
+    notas: {
+        id: number;
+        nota: string;
+    }[];
+    sistemas: string[];
+}
+export interface Tejido {
+    id: number;
+    name: string;
+    Categoria: number[];
+    curso: any[];  // Si tienes una estructura específica para curso, puedes definirla en lugar de usar `any[]`
+    organo: number[];
+    sistema: string;
+    imagenUrl: string;
+  }
 export const tejidosArray: ITejido[] = [
     {
         id: 1,

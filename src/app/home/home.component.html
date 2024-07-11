@@ -1,28 +1,41 @@
+<!-- home.component.html -->
 <div class="cuerpo">
   <section class="container">
     <p class="category">Seleccione una categoría:</p>
     <div class="list-group">
-      <button role="button" class="list-group-category" (click)="selectCategory('')">Mostrar todos<br></button>
-      <button role="button" class="list-group-category" (click)="selectCategory('pectoral')">Categoria 1<br></button>
-      <button role="button" class="list-group-category" (click)="selectCategory('facial')">Categoria 2<br></button>
-      <a href="#" class="list-group-category" (click)="selectCategory('Categoria 3')">Categoria 3<br></a>
+      <button role="button" class="list-group-category" (click)="selectCategory('all')">Mostrar todos</button>
+      <button role="button" class="list-group-category" *ngFor="let categoria of listaCategorias"
+              (click)="selectCategory(categoria.name)">
+        {{ categoria.name }}
+      </button>
     </div>
   </section>
-  
+
   <section class="base">
-    <p class="tissue">Sistema nervioso:</p>
-    <div class="tissue-group">
-        <div *ngFor="let tejido of listaTejidos_show; track $index" class="orden">
-            <img (click)="drawPoint($event)" src="{{tejido.imagenUrl}}" alt="{{tejido.alt}}">
-            <a href="/tejido" class="list-group-item" (click)="selectCategory(tejido.nombre)"> {{tejido.nombre}}</a>
-        </div>
-    </div>
-    <p class="tissue">Sistema respiratorio:</p>
-    <div class="tissue-group">
-        <div *ngFor="let tejido of listaTejidos_show; track $index" class="orden">
-            <img (click)="drawPoint($event)" src="{{tejido.imagenUrl}}" alt="{{tejido.alt}}">
-            <a href="/tejido" class="list-group-item" (click)="selectCategory(tejido.nombre)"> {{tejido.nombre}}</a>
+    <!-- Itera sobre cada sistema único -->
+    <div *ngFor="let sistema of sistemasUnicos" class="tissue-group">
+      <p class="tissue">{{ sistema }}</p>
+      <!-- Filtra las muestras por el sistema actual y muestra todas las muestras -->
+      <div class="orden">
+        <div *ngFor="let muestra of getMuestrasPorSistema(sistema)" class="orden-content">
+          <img (click)="drawPoint($event)" [src]="muestra.imagenUrl">
+          <a [href]="'http://tebadev.sytes.net:4200/tejido/' + muestra.id" class="list-group-item">
+            {{ muestra.name }}
+          </a>
         </div>
       </div>
+    </div>
+    <!-- Agrega una sección para las muestras sin sistema -->
+    <div class="tissue-group" *ngIf="getMuestrasSinSistema().length">
+      <p class="tissue">Sin sistema</p>
+      <div class="orden">
+        <div *ngFor="let muestra of getMuestrasSinSistema()" class="orden-content">
+          <img (click)="drawPoint($event)" [src]="muestra.imagenUrl">
+          <a [href]="'http://tebadev.sytes.net:4200/tejido/' + muestra.id" class="list-group-item">
+            {{ muestra.name }}
+          </a>
+        </div>
+      </div>
+    </div>
   </section>
 </div>
