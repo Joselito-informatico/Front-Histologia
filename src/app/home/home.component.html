@@ -19,7 +19,7 @@
       <div class="orden">
         <div *ngFor="let muestra of getMuestrasPorSistema(sistema)" class="orden-content">
           <img (click)="drawPoint($event)" [src]="muestra.imagenUrl">
-          <a [href]="'http://tebadev.sytes.net:4200/tejido/' + muestra.id" class="list-group-item">
+          <a [href]="'http://tebadev.sytes.net:4201/tejido/' + muestra.id" class="list-group-item">
             {{ muestra.name }}
           </a>
         </div>
@@ -31,7 +31,7 @@
       <div class="orden">
         <div *ngFor="let muestra of getMuestrasSinSistema()" class="orden-content">
           <img (click)="drawPoint($event)" [src]="muestra.imagenUrl">
-          <a [href]="'http://tebadev.sytes.net:4200/tejido/' + muestra.id" class="list-group-item">
+          <a [href]="'http://tebadev.sytes.net:4201/tejido/' + muestra.id" class="list-group-item">
             {{ muestra.name }}
           </a>
         </div>

@@ -7,7 +7,7 @@ import { Categorias, Tejido, Muestra } from '../services/tejidos.mock';
   providedIn: 'root'
 })
 export class ApiService {
-  private apiUrl = 'http://localhost:8000';
+  private apiUrl = 'http://tebadev.sytes.net:8010';
 
   constructor(private http: HttpClient) {}
 
